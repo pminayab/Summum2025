@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🏆 Premios Summum 2025 — Mapa de Lima</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --gold-dark: #8B6914;
+      --ink: #0F0D0A;
+      --cream: #FAF6EE;
+      --warm-gray: #9A9080;
+      --card-bg: #FFFDF7;
+      --border: #E8DFC8;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      padding: 28px 40px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 120% at 20% 50%, rgba(201,168,76,.18) 0%, transparent 65%),
+                  radial-gradient(ellipse 60% 100% at 80% 50%, rgba(201,168,76,.08) 0%, transparent 60%);
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .header-trophy {
+      font-size: 52px;
+      line-height: 1;
+      filter: drop-shadow(0 0 16px rgba(201,168,76,.5));
+    }
+    .header-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 40px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -.5px;
+    }
+    .header-text h1 span { color: var(--gold); }
+    .header-text p {
+      color: var(--warm-gray);
+      font-size: 14px;
+      margin-top: 6px;
+      font-weight: 300;
+      letter-spacing: .3px;
+    }
+    .header-badge {
+      margin-left: auto;
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 8px;
+      padding: 10px 18px;
+      text-align: center;
+    }
+    .header-badge .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .header-badge .lbl { font-size: 11px; color: var(--warm-gray); margin-top: 3px; letter-spacing: .8px; text-transform: uppercase; }
+
+    /* ── FILTERS ── */
+    .filters-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .filters-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--warm-gray);
+      font-weight: 600;
+      margin-right: 4px;
+    }
+    .filter-btn {
+      border: 1.5px solid var(--border);
+      background: transparent;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .2s;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold-dark); }
+    .filter-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(201,168,76,.4);
+    }
+    .search-box {
+      margin-left: auto;
+      position: relative;
+    }
+    .search-box input {
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 7px 16px 7px 36px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      width: 200px;
+      transition: border-color .2s;
+      background: var(--cream);
+    }
+    .search-box input:focus { border-color: var(--gold); }
+    .search-box::before {
+      content: '🔍';
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+    }
+
+    /* ── LAYOUT ── */
+    .main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 40px;
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 28px;
+      min-height: calc(100vh - 160px);
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .results-header {
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 10;
+    }
+    .results-count {
+      font-size: 12px;
+      color: var(--warm-gray);
+      font-weight: 500;
+    }
+    .results-count span { color: var(--gold-dark); font-weight: 700; }
+
+    /* ── RESTAURANT CARD ── */
+    .card {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background .15s;
+      position: relative;
+    }
+    .card:last-child { border-bottom: none; }
+    .card:hover { background: #FFFBF0; }
+    .card.active { background: #FFF8E8; border-left: 3px solid var(--gold); }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .card-rank {
+      background: var(--gold);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      white-space: nowrap;
+      font-family: 'Playfair Display', serif;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .card-rank.gran { background: var(--ink); }
+    .card-rank.winner { background: #2D6A4F; }
+    .card-rank.nominated { background: var(--warm-gray); }
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+    .card-category {
+      font-size: 11.5px;
+      color: var(--warm-gray);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .card-meta a, .card-meta span {
+      font-size: 12px;
+      color: #555;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .card-meta a { color: var(--gold-dark); }
+    .card-meta a:hover { text-decoration: underline; }
+    .card-meta .icon { font-size: 11px; }
+    .card-reservation {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 10.5px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .card-reservation.req { background: #FFF0E0; color: #B05000; }
+    .card-reservation.no  { background: #E8F5E9; color: #2D6A4F; }
+
+    /* ── MAP ── */
+    .map-panel {
+      position: sticky;
+      top: 90px;
+      height: calc(100vh - 130px);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,.08);
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #E8E4D9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--warm-gray);
+    }
+    .map-placeholder .big { font-size: 48px; }
+    .map-placeholder h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--ink); }
+    .map-placeholder p { font-size: 13px; max-width: 300px; text-align: center; line-height: 1.6; }
+    .map-placeholder .open-btn {
+      margin-top: 8px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 24px;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: var(--warm-gray);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      header { padding: 20px 20px 18px; }
+      .filters-bar { padding: 12px 16px; }
+      .main { grid-template-columns: 1fr; padding: 16px; gap: 16px; }
+      .map-panel { position: relative; top: 0; height: 55vw; min-height: 280px; }
+      .sidebar { max-height: 70vh; }
+      .search-box { margin-left: 0; width: 100%; }
+      .search-box input { width: 100%; }
+      .header-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-trophy">🏆</div>
+    <div class="header-text">
+      <h1>Premios <span>Summum</span> 2025</h1>
+      <p>Los mejores restaurantes de Lima · 15ª edición · 30 sep 2025</p>
+    </div>
+    <div class="header-badge">
+      <div class="num">50</div>
+      <div class="lbl">Restaurantes</div>
+    </div>
+  </div>
+</header>
+
+<div class="filters-bar">
+  <div class="filters-inner">
+    <span class="filter-label">Filtrar:</span>
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="gran">Gran SUMMUM</button>
+    <button class="filter-btn" data-filter="top20">Top 20</button>
+    <button class="filter-btn" data-filter="winner">Ganadores</button>
+    <button class="filter-btn" data-filter="nominated">Nominados</button>
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Buscar restaurante…"/>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <aside class="sidebar">
+    <div class="results-header">
+      <div class="results-count">Mostrando <span id="count">50</span> restaurantes</div>
+    </div>
+    <div id="card-list"></div>
+  </aside>
+
+  <div class="map-panel">
+    <div class="map-placeholder" id="map-placeholder">
+      <div class="big">🗺️</div>
+      <h3>Mapa de Restaurantes</h3>
+      <p>Para ver el mapa interactivo con todos los pines, ábrelo directamente en Google Maps.</p>
+      <a class="open-btn" href="https://maps.google.com/maps/search/restaurantes+premiados+lima+peru" target="_blank" id="open-maps-btn">
+        Abrir en Google Maps
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Datos: Premios Summum 2025 · Lima, Perú · Organizado por Perú21 · Selección por Ipsos Perú
+</footer>
+
+<script>
+const RESTAURANTS = [
+  {
+    name: "Astrid & Gastón",
+    rank: "⭐ #1 Top 20",
+    type: ["gran","top20","winner"],
+    category: "#1 Top 20 · Gran SUMMUM · Mejor Restaurante del Perú · Cocina Peruana Contemporánea",
+    district: "San Isidro",
+    phone: "+51 1 442-2777",
+    web: "astridygaston.com",
+    reservation: "req",
+    reservationNote: "Reserva obligatoria · OpenTable o web",
+    lat: -12.0965, lng: -77.0349,
+    mapsUrl: "https://maps.google.com/?cid=3430230164583439791"
+  },
+  {
+    name: "La Mar Cebichería",
+    rank: "#2 Top 20",
+    type: ["top20","winner"],
+    category: "#2 Top 20 · Mejor Cebichería · Mejor Servicio · Cocina Marina",
+    district: "Miraflores",
+    phone: "+51 1 421-3365",
+    web: "lamarcebicheria.com",
+    reservation: "no",
+    reservationNote: "Sin reservas — solo presencial",
+    lat: -12.1133, lng: -77.0453,
+    mapsUrl: "https://maps.google.com/?cid=4154830994225219866"
+  },
+  {
+    name: "Osaka Nikkei",
+    rank: "#3 Top 20",
+    type: ["top20","winner"],
+    category: "#3 Top 20 · Mejor Nikkei y Japonesa · Mejor Ambiente · Cocina Nikkei",
+    district: "San Isidro",
+    phone: "+51 958 798 721",
+    web: "osakanikkei.com",
+    reservation: "req",
+    reservationNote: "Reservas por web o teléfono",
+    lat: -12.1059, lng: -77.0388,
+    mapsUrl: "https://maps.google.com/?cid=5309908037867710521"
+  },
+  {
+    name: "Mayta",
+    rank: "#4 Top 20",
+    type: ["top20","winner"],
+    category: "#4 Top 20 · Mejor Cocina de Autor · Chef Jaime Pesaque",
+    district: "Miraflores",
+    phone: "+51 937 220 734",
+    web: "maytalima.com",
+    reservation: "req",
+    reservationNote: "Reservas por web",
+    lat: -12.1099, lng: -77.0492,
+    mapsUrl: "https://maps.google.com/?cid=8877732925407308623"
+  },
+  {
+    name: "Kjolle",
+    rank: "#5 Top 20",
+    type: ["top20","winner"],
+    category: "#5 Top 20 · Alta Cocina / Insumos Nativos · Chef Pía León",
+    district: "Barranco",
+    phone: "+51 1 242-8575",
+    web: "kjolle.com",
+    reservation: "req",
+    reservationNote: "Reservas esenciales por web",
+    lat: -12.1527, lng: -77.0225,
+    mapsUrl: "https://maps.google.com/?cid=16501602222721309970"
+  },
+  {
+    name: "Central",
+    rank: "⭐ #6 Top 20",
+    type: ["gran","top20","winner"],
+    category: "#6 Top 20 · Gran SUMMUM · Alta Cocina de Ecosistemas · Chef Virgilio Martínez",
+    district: "Barranco",
+    phone: "+51 1 242-8515",
+    web: "centralrestaurante.com.pe",
+    reservation: "req",
+    reservationNote: "Reservas por web (lista de espera)",
+    lat: -12.1526, lng: -77.0225,
+    mapsUrl: "https://maps.google.com/?cid=6871806548421292316"
+  },
+  {
+    name: "Alegría Picantería Piurana",
+    rank: "#7 Top 20",
+    type: ["top20","winner"],
+    category: "#7 Top 20 · Mejor Nuevo Restaurante · Cocina Norteña / Piurana",
+    district: "Miraflores",
+    phone: null,
+    web: null,
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.1268, lng: -77.0279,
+    mapsUrl: "https://maps.google.com/?cid=16497700141145920644"
+  },
+  {
+    name: "Isolina Taberna Peruana",
+    rank: "#8 Top 20",
+    type: ["top20","winner"],
+    category: "#8 Top 20 · Mejor Cocina Criolla · Cocina Criolla Limeña",
+    district: "Barranco",
+    phone: "+51 943 833 031",
+    web: "isolina.pe",
+    reservation: "req",
+    reservationNote: "Reservas por web o teléfono",
+    lat: -12.1476, lng: -77.0223,
+    mapsUrl: "https://maps.google.com/?cid=4073890988560580788"
+  },
+  {
+    name: "Rafael",
+    rank: "⭐ #9 Top 20",
+    type: ["gran","top20","winner"],
+    category: "#9 Top 20 · Gran SUMMUM · Chef Perú Mundo · Chef Rafael Osterling",
+    district: "Miraflores",
+    phone: "+51 966 409 797",
+    web: "rafaelosterling.pe",
+    reservation: "req",
+    reservationNote: "Reservas por web",
+    lat: -12.1254, lng: -77.0314,
+    mapsUrl: "https://maps.google.com/?cid=7081348269772202360"
+  },
+  {
+    name: "Cosme",
+    rank: "#10 Top 20",
+    type: ["top20","winner"],
+    category: "#10 Top 20 · Cocina Creativa · Bar & Restaurante",
+    district: "San Isidro",
+    phone: "+51 1 421-5228",
+    web: "cosme.com.pe",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono o web",
+    lat: -12.1080, lng: -77.0404,
+    mapsUrl: "https://maps.google.com/?cid=17943169957881519260"
+  },
+  {
+    name: "Maido",
+    rank: "⭐ #11 Top 20",
+    type: ["gran","top20","winner"],
+    category: "#11 Top 20 · Gran SUMMUM · #1 World's 50 Best 2025 · Chef Micha Tsumura",
+    district: "Miraflores",
+    phone: "+51 1 313-5100",
+    web: "maido.pe",
+    reservation: "req",
+    reservationNote: "Reservas por web (alta demanda)",
+    lat: -12.1254, lng: -77.0306,
+    mapsUrl: "https://maps.google.com/?cid=814908386545305089"
+  },
+  {
+    name: "Troppo",
+    rank: "#12 Top 20",
+    type: ["top20","winner"],
+    category: "#12 Top 20 · Mejor Cocina Italiana · Restaurante Italiano",
+    district: "San Isidro",
+    phone: "+51 941 496 527",
+    web: "troppo-lima.com",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.0998, lng: -77.0371,
+    mapsUrl: "https://maps.google.com/?cid=7262084310066544538"
+  },
+  {
+    name: "Amoramar",
+    rank: "#13 Top 20",
+    type: ["top20","winner"],
+    category: "#13 Top 20 · Cocina Marina / Fusión",
+    district: "San Isidro",
+    phone: "+51 955 372 225",
+    web: "amoramar.com",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.1056, lng: -77.0389,
+    mapsUrl: "https://maps.google.com/?cid=7362862238606850934"
+  },
+  {
+    name: "La Picantería",
+    rank: "#14 Top 20",
+    type: ["top20","winner"],
+    category: "#14 Top 20 · Cocina Popular · Pescados del Día",
+    district: "Surquillo",
+    phone: "+51 953 489 892",
+    web: "picanteriasdelperu.com",
+    reservation: "no",
+    reservationNote: "Llegar temprano — sin reservas fines de semana",
+    lat: -12.1168, lng: -77.0238,
+    mapsUrl: "https://maps.google.com/?cid=11299101256184091634"
+  },
+  {
+    name: "Mérito",
+    rank: "#15 Top 20",
+    type: ["top20","winner"],
+    category: "#15 Top 20 · Farm to Table · Mejor Sommelier (Kyra Bruning)",
+    district: "Barranco",
+    phone: "+51 936 023 089",
+    web: "merito.com.pe",
+    reservation: "req",
+    reservationNote: "Reservas por web (recomendado con 3 meses)",
+    lat: -12.1505, lng: -77.0208,
+    mapsUrl: "https://maps.google.com/?cid=11485624021783848913"
+  },
+  {
+    name: "Fiesta Lima",
+    rank: "#16 Top 20",
+    type: ["top20","winner"],
+    category: "#16 Top 20 · Mejor Cocina Regional · Cocina Norteña",
+    district: "Miraflores",
+    phone: "+51 1 242-9009",
+    web: "restaurantfiestagourmet.pe",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.1316, lng: -77.0237,
+    mapsUrl: "https://maps.google.com/?cid=4713354965406121326"
+  },
+  {
+    name: "Huaca Pucllana",
+    rank: "#17 Top 20",
+    type: ["top20","winner"],
+    category: "Top 20 · Cocina Peruana junto a ruinas arqueológicas",
+    district: "Miraflores",
+    phone: "+51 1 445-4042",
+    web: "resthuacapucllana.com",
+    reservation: "req",
+    reservationNote: "Reservas por web o teléfono",
+    lat: -12.1113, lng: -77.0332,
+    mapsUrl: "https://maps.google.com/?cid=15521185768514809171"
+  },
+  {
+    name: "El Mercado",
+    rank: "#18 Top 20",
+    type: ["top20","winner"],
+    category: "Top 20 · Cocina Marina · Chef Rafael Osterling",
+    district: "Miraflores",
+    phone: "+51 974 779 517",
+    web: "elmercado.pe",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.1115, lng: -77.0486,
+    mapsUrl: "https://maps.google.com/?cid=17874960099326297300"
+  },
+  {
+    name: "Le Coq",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Cocina del Mundo · Cocina Francesa",
+    district: "San Isidro",
+    phone: "+51 937 779 479",
+    web: "lecoq.pe",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.1109, lng: -77.0376,
+    mapsUrl: "https://maps.google.com/?cid=6796311769266143246"
+  },
+  {
+    name: "Sienna Bakery",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Pastelería · Pastelería Artesanal",
+    district: "Miraflores",
+    phone: "+51 926 928 798",
+    web: "siennabakery.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1145, lng: -77.0400,
+    mapsUrl: "https://maps.google.com/?cid=7886755068001682880"
+  },
+  {
+    name: "TITÍ",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Chifa y Cocina China · Fundado 1959",
+    district: "San Isidro",
+    phone: "+51 952 770 672",
+    web: "chifatiti.com",
+    reservation: "req",
+    reservationNote: "Reservas con depósito obligatorio",
+    lat: -12.0901, lng: -77.0158,
+    mapsUrl: "https://maps.google.com/?cid=3095921641701479104"
+  },
+  {
+    name: "El Charrúa",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejores Carnes y Parrillas · Parrilla Uruguaya",
+    district: "La Molina",
+    phone: "+51 1 434-5503",
+    web: "elcharrua.com",
+    reservation: "no",
+    reservationNote: "Sin reservas — orden de llegada",
+    lat: -12.0726, lng: -76.9573,
+    mapsUrl: "https://maps.google.com/?cid=2707775028781585289"
+  },
+  {
+    name: "Sapiens",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Brasas y Fuegos · Chef Jaime Pesaque",
+    district: "San Isidro",
+    phone: "+51 959 717 899",
+    web: "sapienslima.com",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono o web",
+    lat: -12.1069, lng: -77.0386,
+    mapsUrl: "https://maps.google.com/?cid=15428236281736910587"
+  },
+  {
+    name: "El Bolivariano",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Restaurante Clásico · Cocina Peruana desde 1940",
+    district: "Pueblo Libre",
+    phone: "+51 1 463-0434",
+    web: "elbolivariano.com",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.0767, lng: -77.0639,
+    mapsUrl: "https://maps.google.com/?cid=9084638612742465047"
+  },
+  {
+    name: "Kasa 2REIS",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Huarique · Solo con reserva previa",
+    district: "Breña",
+    phone: "+51 986 618 362",
+    web: null,
+    reservation: "req",
+    reservationNote: "Solo con reserva · @kasa2reis",
+    lat: -12.0524, lng: -77.0526,
+    mapsUrl: "https://maps.google.com/?cid=8917608646228376448"
+  },
+  {
+    name: "Primos Chicken Bar",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "#1 Mejor Pollo a la Brasa",
+    district: "Miraflores",
+    phone: "+51 1 680-4049",
+    web: "primoschickenbar.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1349, lng: -77.0259,
+    mapsUrl: "https://maps.google.com/?cid=13119197179445052674"
+  },
+  {
+    name: "El Pan de la Chola",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Café Restaurante · Panadería Artesanal",
+    district: "San Isidro",
+    phone: "+51 914 680 244",
+    web: "elpandelachola.com",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1059, lng: -77.0401,
+    mapsUrl: "https://maps.google.com/?cid=15247090242219267495"
+  },
+  {
+    name: "Big Boy Burgers",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Hamburguesería",
+    district: "Miraflores",
+    phone: "+51 924 294 806",
+    web: "bigboy.com.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1200, lng: -77.0274,
+    mapsUrl: "https://maps.google.com/?cid=9278852138068112394"
+  },
+  {
+    name: "El Chinito",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Sanguchería Peruana",
+    district: "Miraflores",
+    phone: "+51 991 683 072",
+    web: "elchinito.com.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1126, lng: -77.0489,
+    mapsUrl: "https://maps.google.com/?cid=875859740003656322"
+  },
+  {
+    name: "Amador Rooftop",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Restobar-Lounge · Bar en Azotea",
+    district: "San Isidro",
+    phone: null,
+    web: "amadorloftbar.com",
+    reservation: "req",
+    reservationNote: "Reservas por Instagram @amadorrooftop o web",
+    lat: -12.0966, lng: -77.0358,
+    mapsUrl: "https://maps.google.com/?cid=5579034096692171317"
+  },
+  {
+    name: "Bijou Bar",
+    rank: "Ganador",
+    type: ["winner"],
+    category: "Mejor Bartender (John Rojas) · Coctelería de Autor",
+    district: "Miraflores",
+    phone: null,
+    web: "beacons.ai/bijoubar.pe",
+    reservation: "req",
+    reservationNote: "Reservas por Instagram @bijoubar.pe",
+    lat: -12.1239, lng: -77.0278,
+    mapsUrl: "https://maps.google.com/?cid=12808780220075958092"
+  },
+  {
+    name: "Costanera 700",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cebichería + Nikkei · Cocina Marina-Nikkei",
+    district: "Miraflores",
+    phone: "+51 1 421-4635",
+    web: "costanera700.pe",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.1168, lng: -77.0455,
+    mapsUrl: "https://maps.google.com/?cid=17339958898395959531"
+  },
+  {
+    name: "Barra Chalaca",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cebichería · Cocina Marina Popular",
+    district: "La Victoria",
+    phone: "+51 1 743-6545",
+    web: "barrachalaca.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.0895, lng: -77.0198,
+    mapsUrl: "https://maps.google.com/?cid=3330298269964157294"
+  },
+  {
+    name: "Canta Rana",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cebichería · Cebichería Tradicional",
+    district: "Barranco",
+    phone: "+51 923 841 016",
+    web: null,
+    reservation: "req",
+    reservationNote: "Reservas recomendadas por teléfono",
+    lat: -12.1468, lng: -77.0223,
+    mapsUrl: "https://maps.google.com/?cid=6697624821164225682"
+  },
+  {
+    name: "Pescados Capitales",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cebichería · Cocina Marina",
+    district: "Miraflores",
+    phone: "+51 1 680-4600",
+    web: "pescadoscapitales.com",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.1094, lng: -77.0496,
+    mapsUrl: "https://maps.google.com/?cid=18091926568235566687"
+  },
+  {
+    name: "Al Fresco",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cebichería · Cocina Marina y Peruana",
+    district: "Miraflores",
+    phone: "+51 979 701 279",
+    web: "restaurantealfresco.com",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono o web",
+    lat: -12.1260, lng: -77.0313,
+    mapsUrl: "https://maps.google.com/?cid=14863784476582737274"
+  },
+  {
+    name: "La Rosa Náutica",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cebichería · Sobre el mar, Espigón Miraflores",
+    district: "Miraflores",
+    phone: "+51 1 445-0149",
+    web: "larosanautica.com",
+    reservation: "req",
+    reservationNote: "Reservas muy recomendadas",
+    lat: -12.1312, lng: -77.0362,
+    mapsUrl: "https://maps.google.com/?cid=16323827120539852893"
+  },
+  {
+    name: "Panchita",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cocina Criolla · Gastón Acurio",
+    district: "Miraflores",
+    phone: "+51 1 242-5957",
+    web: "panchita.pe",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono o web",
+    lat: -12.1178, lng: -77.0312,
+    mapsUrl: "https://maps.google.com/?cid=8923662332441684648"
+  },
+  {
+    name: "El Rincón que no Conoces",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cocina Criolla · Teresa Izquierdo",
+    district: "Lince",
+    phone: "+51 1 471-2171",
+    web: "elrinconquenoconoces.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas — llegada temprana",
+    lat: -12.0842, lng: -77.0329,
+    mapsUrl: "https://maps.google.com/?cid=11188089150874570053"
+  },
+  {
+    name: "Antigua Taberna Queirolo",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Cocina Criolla + Restaurante Clásico · Desde 1880",
+    district: "Pueblo Libre",
+    phone: "+51 1 460-0441",
+    web: "antiguatabernaqueirolo.com",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.0777, lng: -77.0630,
+    mapsUrl: "https://maps.google.com/?cid=14732396148837895680"
+  },
+  {
+    name: "La Granja Azul",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Pollo a la Brasa (2do lugar) · Pionera del pollo a la brasa (1950)",
+    district: "Santa Clara, Ate",
+    phone: "+51 997 575 356",
+    web: "granja-azul.com",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono",
+    lat: -12.0327, lng: -76.8863,
+    mapsUrl: "https://maps.google.com/?cid=6007845539410442972"
+  },
+  {
+    name: "Tori Pollería",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Pollo a la Brasa (3er lugar) · Concepto del Chef Micha Tsumura",
+    district: "Miraflores",
+    phone: "+51 1 500-6188",
+    web: "tori.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1212, lng: -77.0336,
+    mapsUrl: "https://maps.google.com/?cid=14103543289272471522"
+  },
+  {
+    name: "Don Tito",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Pollo a la Brasa (4to lugar) · 39+ años",
+    district: "San Borja",
+    phone: "+51 1 680-9200",
+    web: "dontito.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1007, lng: -77.0020,
+    mapsUrl: "https://maps.google.com/?cid=3307496861141787973"
+  },
+  {
+    name: "La Preferida",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Mejor Sanguchería · Famosa por su pan con chicharrón",
+    district: "Miraflores",
+    phone: "+51 1 445-5180",
+    web: "lapreferida.com.pe",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1287, lng: -77.0203,
+    mapsUrl: "https://maps.google.com/?cid=16499516285792876603"
+  },
+  {
+    name: "Zimmermann",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Mejor Sanguchería · Sanguches y café artesanal",
+    district: "Miraflores",
+    phone: "+51 1 444-1308",
+    web: "embutidoszimmermann.com",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.1323, lng: -77.0266,
+    mapsUrl: "https://maps.google.com/?cid=12821542326259461050"
+  },
+  {
+    name: "La Lucha Sanguchería",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Mejor Sanguchería · Múltiples locales Lima",
+    district: "Varios distritos",
+    phone: null,
+    web: null,
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.0564, lng: -77.0371,
+    mapsUrl: "https://maps.google.com/?cid=14440309865164064088"
+  },
+  {
+    name: "Papacho's",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Mejor Hamburguesería · Gastón Acurio",
+    district: "Jesús María",
+    phone: null,
+    web: "papachos.com",
+    reservation: "no",
+    reservationNote: "Sin reservas",
+    lat: -12.0904, lng: -77.0523,
+    mapsUrl: "https://maps.google.com/?cid=7777468919053817759"
+  },
+  {
+    name: "OSSO",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Carnes y Parrillas · Renzo Garibaldi",
+    district: "San Isidro",
+    phone: "+51 922 019 328",
+    web: "osso.pe",
+    reservation: "req",
+    reservationNote: "Reservas por web",
+    lat: -12.0971, lng: -77.0375,
+    mapsUrl: "https://maps.google.com/?cid=9652678554830063538"
+  },
+  {
+    name: "Carnal Prime Steakhouse",
+    rank: "Nominado",
+    type: ["nominated"],
+    category: "Nominado Carnes y Parrillas · Cortes Premium",
+    district: "Miraflores",
+    phone: "+51 946 243 996",
+    web: "carnalprime.com",
+    reservation: "req",
+    reservationNote: "Reservas por teléfono o web",
+    lat: -12.1134, lng: -77.0346,
+    mapsUrl: "https://maps.google.com/?cid=2494533017578515867"
+  }
+];
+
+let activeFilter = 'all';
+let activeCard = null;
+let searchQuery = '';
+
+function buildMapsUrl() {
+  // Build a Google My Maps search URL centered on Lima with markers
+  const center = '-12.1000,-77.0350';
+  const zoom = '13';
+  return `https://www.google.com/maps/@${center},${zoom}z`;
+}
+
+function renderCards() {
+  const list = document.getElementById('card-list');
+  const countEl = document.getElementById('count');
+  
+  const filtered = RESTAURANTS.filter(r => {
+    const matchFilter = activeFilter === 'all' || r.type.includes(activeFilter);
+    const matchSearch = !searchQuery || 
+      r.name.toLowerCase().includes(searchQuery) ||
+      r.category.toLowerCase().includes(searchQuery) ||
+      r.district.toLowerCase().includes(searchQuery);
+    return matchFilter && matchSearch;
+  });
+
+  countEl.textContent = filtered.length;
+
+  list.innerHTML = filtered.map((r, i) => {
+    const rankClass = r.type.includes('gran') ? 'gran' : 
+                      r.type.includes('top20') ? '' :
+                      r.type.includes('winner') ? 'winner' : 'nominated';
+    return `
+    <div class="card" data-index="${RESTAURANTS.indexOf(r)}" onclick="selectCard(this, ${RESTAURANTS.indexOf(r)})">
+      <div class="card-top">
+        <span class="card-rank ${rankClass}">${r.rank}</span>
+        <span class="card-name">${r.name}</span>
+      </div>
+      <div class="card-category">${r.category} · <strong>${r.district}</strong></div>
+      <div class="card-meta">
+        ${r.phone ? `<a href="tel:${r.phone.replace(/\s/g,'')}"><span class="icon">📞</span>${r.phone}</a>` : ''}
+        ${r.web ? `<a href="https://${r.web}" target="_blank"><span class="icon">🌐</span>${r.web}</a>` : ''}
+        <a href="${r.mapsUrl}" target="_blank"><span class="icon">📍</span>Ver en Google Maps</a>
+      </div>
+      <span class="card-reservation ${r.reservation}">${r.reservationNote}</span>
+    </div>`;
+  }).join('');
+}
+
+function selectCard(el, idx) {
+  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  activeCard = idx;
+  const r = RESTAURANTS[idx];
+  // Open in Google Maps
+  window.open(r.mapsUrl, '_blank');
+}
+
+// Build the Open in Maps button with all restaurants
+function buildAllRestaurantsMapUrl() {
+  // Google Maps search for all restaurants - use a general Lima map
+  const query = encodeURIComponent('restaurantes premiados Lima Peru');
+  return `https://www.google.com/maps/search/${query}/@-12.1100,-77.0350,14z`;
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderCards();
+  });
+});
+
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  renderCards();
+});
+
+// Build an embedded map showing Lima with all restaurant markers via iframe
+function buildEmbeddedMap() {
+  const mapPanel = document.querySelector('.map-panel');
+  // Build Google Maps embed with multiple markers
+  const markers = RESTAURANTS.map(r => `${r.lat},${r.lng}`).join('|');
+  
+  // Use a static map approach since we don't have API key
+  // Show placeholder with link instead
+  const btn = document.getElementById('open-maps-btn');
+  btn.href = `https://www.google.com/maps/search/restaurantes+premiados+Lima+Summum+2025/@-12.1100,-77.0350,13z`;
+}
+
+buildEmbeddedMap();
+renderCards();
+</script>
+
+</body>
+</html>
